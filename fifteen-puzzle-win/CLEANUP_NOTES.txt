@@ -1,0 +1,65 @@
+Cleanup notes for the Visual C++ 2010 project
+=============================================
+
+The original working folder contained both source files and generated Visual Studio/build files.
+
+Safe to delete before publishing
+--------------------------------
+The following files are generated or user-specific and are safe to remove from a public/source package:
+
+- *.suo
+- *.user
+- *.aps
+- *.obj
+- *.res
+- Debug/
+- ipch/
+- *.sdf
+- *.opensdf
+- *.pdb
+- *.ilk
+- *.idb
+- *.tlog
+- Release/game.15
+
+In the provided original folder, these were safe to remove:
+
+- fifteen-puzzle-win.suo
+- fifteen-puzzle-win.vcxproj.user
+- fifteen.aps
+- res.aps
+- fiftten-puzzle.obj
+- fiftten-puzzle.res
+- Release/game.15
+
+Duplicate resource files
+------------------------
+The active Visual Studio project file references:
+
+    res.rc
+
+Therefore, res.rc is the resource script that must be kept.
+
+The files below were not referenced by the current .vcxproj and were not required for this cleaned package:
+
+- fifteen.rc
+- fifteen-puzzle-win.rc
+
+If you later change the Visual Studio project to reference one of them, then keep the referenced file. For the current project file, they are not needed.
+
+Keep these files
+----------------
+The following files should be kept because they are required to open and build the project in Visual C++ 2010:
+
+- fifteen-puzzle-win.sln
+- fifteen-puzzle-win.vcxproj
+- fifteen-puzzle-win.vcxproj.filters
+- fiftten-puzzle.c
+- res.rc
+- resource.h
+- icon1.ico
+- app.manifest
+
+The file below is not required to compile, but it is useful for users who only want to run the program:
+
+- bin/fifteen-puzzle-win.exe
