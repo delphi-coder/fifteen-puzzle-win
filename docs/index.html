@@ -1,14 +1,160 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Fifteen Puzzle for Windows — a native C and Win32 implementation with undo, redo, save, load, timer, and solvable shuffles."><meta name="theme-color" content="#111827"><title>Fifteen Puzzle for Windows</title><link rel="stylesheet" href="style.css"></head>
-<body><header><a class="brand" href="#top"><b>15</b> Fifteen Puzzle</a><nav><a href="#features">Features</a><a href="#technical">Technical</a><a href="https://github.com/delphi-coder/fifteen-puzzle-win">GitHub</a></nav></header>
-<main id="top"><section class="hero"><div><p class="eyebrow">C · Win32 API · Visual C++ 2010</p><h1>Slide. Think. <span>Solve.</span></h1><p class="lead">The classic 15-puzzle as a lightweight native Windows application—with undo/redo, save/load, timer, restart, and a fully commented C source.</p><div class="actions"><a class="button primary" href="https://github.com/delphi-coder/fifteen-puzzle-win/releases/latest/download/fifteen-puzzle-win.zip">Download Win32</a><a class="button" href="https://github.com/delphi-coder/fifteen-puzzle-win">Read the source</a></div></div>
-<figure><div class="window"><i></i><i></i><i></i><strong>fifteen-puzzle-win.exe</strong></div><img src="fifteen-puzzle.png" alt="Fifteen Puzzle native Windows application"><figcaption>Real application screenshot from the ALTEK project archive</figcaption></figure></section>
-<section class="facts"><div><small>LANGUAGE</small><strong>Plain C</strong></div><div><small>UI</small><strong>Win32 API</strong></div><div><small>BOARD</small><strong>4 × 4</strong></div><div><small>TOOLCHAIN</small><strong>Visual C++ 2010</strong></div></section>
-<section class="section" id="features"><p class="eyebrow">Small game, complete state</p><h2>More than a basic puzzle.</h2><div class="grid"><article><em>01</em><h3>Play your way</h3><p>New game, restart, pause, move count, elapsed time, and guaranteed-solvable randomized boards.</p></article><article><em>02</em><h3>Undo & redo</h3><p>Full game-state snapshots preserve the board, blank tile, move count, clock, pause state, and solved state.</p></article><article><em>03</em><h3>Save & continue</h3><p>Quick save/load through <code>game.15</code>, plus standard Windows dialogs for Save As and Load From.</p></article></div></section>
-<section class="section technical" id="technical"><div><p class="eyebrow">Under the tiles</p><h2>Native Windows, clearly explained.</h2><p>The program registers a window class, builds menus and owner-drawn buttons, processes the Win32 message loop, and keeps the puzzle model in a 16-element array. Each saved board fits into eight bytes by packing every tile into four bits.</p><ul><li>Solvability checked using inversions and blank-row position</li><li>Owner-drawn buttons control every tile's appearance</li><li>Binary save format stores board, seed, clock, moves, and flags</li><li>Single, heavily commented main C source</li></ul></div><pre><code>fifteen-puzzle-win/
-├── fifteen-puzzle.c
-├── res.rc
-├── resource.h
-├── app.manifest
-└── bin/
-    └── fifteen-puzzle-win.exe</code></pre></section></main>
-<footer><span>Fifteen Puzzle for Windows · MIT License</span><a href="https://github.com/delphi-coder/fifteen-puzzle-win">Source on GitHub ↗</a></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Fifteen Puzzle for Windows — a native C and Win32 implementation with undo, redo, save/load, timer, solvable shuffles, and fully commented source.">
+  <meta name="theme-color" content="#111827">
+  <title>Fifteen Puzzle for Windows</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <a class="brand" href="#top"><b>15</b><span>Fifteen Puzzle <small>for Windows</small></span></a>
+    <nav><a href="#story">History</a><a href="#features">Features</a><a href="#code">Code guide</a><a href="https://github.com/delphi-coder/fifteen-puzzle-win">GitHub</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">C · Win32 API · Visual C++ 2010</p>
+        <h1>A classic puzzle, built with plain Windows C.</h1>
+        <p class="lead">A lightweight native implementation of the 15-puzzle with solvable shuffles, undo and redo, save and load, pause, restart, a move counter, and an elapsed-time clock.</p>
+        <p>This is also a study project: one heavily commented source file shows how a traditional Win32 desktop program creates its window, menus and controls, handles messages, draws its own tiles, and preserves game state without a framework or game engine.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/delphi-coder/fifteen-puzzle-win/releases/latest/download/fifteen-puzzle-win.zip">Download Win32</a>
+          <a class="button" href="https://github.com/delphi-coder/fifteen-puzzle-win/blob/main/fifteen-puzzle-win/fifteen-puzzle.c">Read fifteen-puzzle.c</a>
+        </div>
+      </div>
+      <figure class="app-shot">
+        <div class="window-bar"><i></i><i></i><i></i><strong>fifteen-puzzle-win.exe</strong></div>
+        <img src="fifteen-puzzle.png" width="265" height="353" alt="Fifteen Puzzle native Windows application showing a shuffled four-by-four board">
+        <figcaption>Actual application output at its native 265 × 353 pixel size.</figcaption>
+      </figure>
+    </section>
+
+    <section class="facts" aria-label="Project facts">
+      <div><small>LANGUAGE</small><strong>C</strong></div>
+      <div><small>INTERFACE</small><strong>Win32 API</strong></div>
+      <div><small>BOARD</small><strong>4 × 4</strong></div>
+      <div><small>TOOLCHAIN</small><strong>Visual C++ 2010</strong></div>
+      <div><small>BINARY</small><strong>Native Win32</strong></div>
+    </section>
+
+    <section class="section story" id="story">
+      <div class="section-heading">
+        <p class="eyebrow">A short history</p>
+        <h2>From an 1880 craze to a compact Windows program.</h2>
+      </div>
+      <div class="story-grid">
+        <article>
+          <span>1870s</span>
+          <h3>The sliding-number puzzle appears</h3>
+          <p>The 15-puzzle—also sold under names such as the Boss Puzzle—was invented in the United States in the 1870s. Its rules were instantly understandable: fifteen numbered pieces, one empty square, and only sliding moves.</p>
+        </article>
+        <article>
+          <span>1879–1880</span>
+          <h3>A worldwide puzzle craze</h3>
+          <p>The puzzle became a major popular phenomenon in the United States and quickly spread to Europe and beyond. It also attracted mathematicians because some arrangements that look almost solved are actually unreachable.</p>
+        </article>
+        <article>
+          <span>Today</span>
+          <h3>A useful programming exercise</h3>
+          <p>The same small rule set makes an excellent software project: it needs a model, input handling, layout, drawing, timing, persistence, history, randomization, and a correctness rule for generated boards.</p>
+        </article>
+      </div>
+      <p class="source-note">Historical summary based on the <a href="https://library.ethz.ch/en/collections-and-archives/platforms/virtual-exhibitions/Its-all-math-and-games/puzzle.html">ETH Library history</a> and the <a href="https://old.maa.org/press/maa-reviews/the-15-puzzle-how-it-drove-the-world-crazy">Mathematical Association of America</a>.</p>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading narrow">
+        <p class="eyebrow">The complete game loop</p>
+        <h2>Small enough to understand, complete enough to be useful.</h2>
+        <p>The Windows edition goes beyond a minimal tile demo. It maintains a complete game state and gives the player the conveniences expected from a real desktop application.</p>
+      </div>
+      <div class="feature-grid">
+        <article><em>01</em><h3>Guaranteed-solvable shuffle</h3><p>A random arrangement is checked using inversion parity and the blank row. Impossible boards are rejected before a game begins.</p></article>
+        <article><em>02</em><h3>Undo and redo</h3><p>Each history entry stores a full snapshot: tiles, blank position, move count, elapsed time, paused state, and solved state.</p></article>
+        <article><em>03</em><h3>Save and load</h3><p>Quick commands use <code>game.15</code>; Save As and Load From use the standard Windows file dialogs for choosing another path.</p></article>
+        <article><em>04</em><h3>Restart or start over</h3><p>Restart returns to the initial shuffled board. New Game produces another verified arrangement with a new seed.</p></article>
+        <article><em>05</em><h3>Owner-drawn tiles</h3><p>The numbered buttons are drawn by the application, demonstrating <code>WM_DRAWITEM</code> and giving the board a controlled, consistent appearance.</p></article>
+        <article><em>06</em><h3>Clock and pause state</h3><p>A Win32 timer updates elapsed time while play is active. Pause freezes the clock and becomes part of the saved state.</p></article>
+      </div>
+    </section>
+
+    <section class="section math-section">
+      <div>
+        <p class="eyebrow">Why random is not enough</p>
+        <h2>Only half of all tile permutations are solvable.</h2>
+        <p>Sliding a tile does not allow arbitrary permutations. For a 4 × 4 board, solvability depends on two properties: the inversion count of the numbered tiles and the blank square's row counted from the bottom.</p>
+        <p>The generator keeps shuffling until those properties have the required parity. This avoids presenting the player with a board that can never reach the ordered state.</p>
+      </div>
+      <div class="rule-card">
+        <p><strong>Board width:</strong> even</p>
+        <p><strong>Check:</strong> inversions + blank row</p>
+        <p><strong>Result:</strong> accept only a reachable state</p>
+        <small>The famous “14–15 swapped” position is the classic example of an impossible arrangement.</small>
+      </div>
+    </section>
+
+    <section class="section code-section" id="code">
+      <div class="section-heading">
+        <p class="eyebrow">Code walkthrough</p>
+        <h2>How the Win32 implementation is organized.</h2>
+      </div>
+      <div class="code-layout">
+        <div class="code-map">
+          <article><code>wWinMain</code><p>Registers the window class, creates the main window, and runs the standard message loop.</p></article>
+          <article><code>WM_CREATE</code><p>Builds menus, labels, tile buttons and fonts, starts the timer, and creates the first puzzle.</p></article>
+          <article><code>WM_SIZE</code><p>Recalculates the board geometry so controls stay aligned with the client area.</p></article>
+          <article><code>WM_COMMAND</code><p>Routes menu actions, keyboard accelerators, and tile clicks to the game logic.</p></article>
+          <article><code>WM_TIMER</code><p>Advances and redraws the elapsed-time display while the game is running.</p></article>
+          <article><code>WM_DRAWITEM</code><p>Paints numbered tiles and status elements instead of relying on default button rendering.</p></article>
+        </div>
+        <pre><code>fifteen-puzzle-win/
+├── fifteen-puzzle.c       main program
+├── res.rc                 menus & resources
+├── resource.h             command IDs
+├── app.manifest           Windows metadata
+├── icon1.ico              application icon
+├── bin/
+│   └── fifteen-puzzle-win.exe
+└── screenshots/
+    └── fifteen-puzzle.png</code></pre>
+      </div>
+    </section>
+
+    <section class="section persistence">
+      <div>
+        <p class="eyebrow">Compact persistence</p>
+        <h2>Two boards fit in sixteen bytes.</h2>
+        <p>Every tile value is between 0 and 15, so it fits in four bits. Two tile values are packed into each byte; one 16-tile board therefore needs only eight bytes.</p>
+      </div>
+      <div class="byte-demo" aria-label="Two four-bit tile values packed into one byte"><span>tile A<br><b>4 bits</b></span><span>tile B<br><b>4 bits</b></span><strong>1 byte</strong></div>
+      <div>
+        <p>The save file stores both the current board and the original shuffled board, along with the random seed, move count, elapsed time, and state flags. That is enough to continue playing or restart the exact same puzzle.</p>
+      </div>
+    </section>
+
+    <section class="section build-section">
+      <div>
+        <p class="eyebrow">Build and study</p>
+        <h2>Visual C++ 2010, Win32 Release.</h2>
+        <p>Open <code>fifteen-puzzle-win.sln</code>, select the Win32 Release configuration, and build. The repository contains no framework dependency; it uses the Windows SDK and standard C runtime available with Visual C++ 2010.</p>
+        <p>The public executable was rebuilt from the published source before release.</p>
+      </div>
+      <div class="shortcuts">
+        <h3>Keyboard shortcuts</h3>
+        <dl><dt>Ctrl + S</dt><dd>Save</dd><dt>Ctrl + Shift + S</dt><dd>Save As</dd><dt>Ctrl + O</dt><dd>Load</dd><dt>Ctrl + Shift + O</dt><dd>Load From</dd><dt>Ctrl + Z</dt><dd>Undo</dd><dt>Ctrl + Y</dt><dd>Redo</dd></dl>
+      </div>
+    </section>
+
+    <section class="download-section">
+      <div><p class="eyebrow">Ready to play or inspect</p><h2>Download the executable and complete source.</h2><p>The release archive contains the Win32 program, Visual C++ project, commented C source, resources, screenshot, README, and MIT license.</p></div>
+      <a class="button primary" href="https://github.com/delphi-coder/fifteen-puzzle-win/releases/latest/download/fifteen-puzzle-win.zip">Download fifteen-puzzle-win.zip</a>
+    </section>
+  </main>
+
+  <footer><span>Fifteen Puzzle for Windows · MIT License</span><a href="https://github.com/delphi-coder/fifteen-puzzle-win">Source on GitHub ↗</a></footer>
+</body>
+</html>
