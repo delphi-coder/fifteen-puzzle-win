@@ -28,8 +28,8 @@ In the provided original folder, these were safe to remove:
 - fifteen-puzzle-win.vcxproj.user
 - fifteen.aps
 - res.aps
-- fiftten-puzzle.obj
-- fiftten-puzzle.res
+- fifteen-puzzle.obj
+- fifteen-puzzle.res
 - Release/game.15
 
 Duplicate resource files
@@ -54,7 +54,7 @@ The following files should be kept because they are required to open and build t
 - fifteen-puzzle-win.sln
 - fifteen-puzzle-win.vcxproj
 - fifteen-puzzle-win.vcxproj.filters
-- fiftten-puzzle.c
+- fifteen-puzzle.c
 - res.rc
 - resource.h
 - icon1.ico

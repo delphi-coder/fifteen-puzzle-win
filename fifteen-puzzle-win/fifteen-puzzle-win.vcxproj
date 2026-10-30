@@ -62,7 +62,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fiftten-puzzle.c" />
+    <ClCompile Include="fifteen-puzzle.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />

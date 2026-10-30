@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="fiftten-puzzle.c">
+    <ClCompile Include="fifteen-puzzle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

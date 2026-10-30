@@ -57,7 +57,7 @@ Then build either the Debug or Release Win32 configuration.
 
 Important source files
 ----------------------
-fiftten-puzzle.c
+fifteen-puzzle.c
     Main application source file. It contains the Win32 entry point, window procedure,
     board logic, drawing code, save/load logic, timer handling, and undo/redo logic.
 
@@ -108,7 +108,7 @@ README.txt
 fifteen-puzzle-win.sln
 fifteen-puzzle-win.vcxproj
 fifteen-puzzle-win.vcxproj.filters
-fiftten-puzzle.c
+fifteen-puzzle.c
 res.rc
 resource.h
 icon1.ico
